@@ -1,4 +1,4 @@
-const SignIn = () => {
+const LogIn = () => {
   return (
     <section className="flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-50 to-blue-50">
       <div className="flex flex-col w-4/5 max-w-4xl bg-white rounded-lg shadow-lg md:flex-row">
@@ -65,4 +65,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default LogIn;
