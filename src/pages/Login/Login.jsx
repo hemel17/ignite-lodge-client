@@ -1,9 +1,11 @@
+import "animate.css";
+
 const LogIn = () => {
   return (
     <section className="flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-50 to-blue-50">
       <div className="flex flex-col w-4/5 max-w-4xl bg-white rounded-lg shadow-lg md:flex-row">
         {/* Sign In Section */}
-        <div className="flex flex-col items-center justify-center w-full p-8 md:min-h-[480px] md:w-1/2">
+        <div className="flex animate__animated animate__bounceInLeft flex-col items-center justify-center w-full p-8 md:min-h-[480px] md:w-1/2">
           <h2 className="mb-4 text-3xl font-bold text-center">Log In</h2>
           <div className="flex mb-4 space-x-3">
             <button className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full">
@@ -50,7 +52,7 @@ const LogIn = () => {
           </form>
         </div>
         {/* Sign Up Section */}
-        <div className="flex flex-col items-center justify-center w-full p-8 text-white rounded-b-lg bg-primary md:rounded-r-lg md:rounded-l-[30%] md:w-1/2">
+        <div className="flex animate__animated animate__bounceInRight flex-col items-center justify-center w-full p-8 text-white rounded-b-lg bg-primary md:rounded-r-lg md:rounded-l-[30%] md:w-1/2">
           <h2 className="mb-4 text-3xl font-bold">Hello, Friend!</h2>
           <p className="mb-4 text-center">
             Register with your personal details to use all of our site&apos;s
