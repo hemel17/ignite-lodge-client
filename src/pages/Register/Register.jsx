@@ -1,13 +1,12 @@
 import { Typography } from "@material-tailwind/react";
 import "animate.css";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
-import { useContext } from "react";
 
-const LogIn = () => {
-  const { logIn, googleLogIn } = useContext(AuthContext);
-
+const Register = () => {
+  const { createUser, googleLogIn } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -16,8 +15,8 @@ const LogIn = () => {
 
   const onSubmit = async (data) => {
     try {
-      const res = await logIn(data);
-      console.log(res);
+      const user = await createUser(data);
+      console.log(user);
     } catch (error) {
       console.error(error);
     }
@@ -34,10 +33,10 @@ const LogIn = () => {
 
   return (
     <section className="flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-50 to-blue-50">
-      <div className="flex flex-col w-4/5 max-w-4xl bg-white rounded-lg shadow-lg md:flex-row">
-        {/* Sign In Section */}
-        <div className="flex animate__animated animate__bounceInLeft flex-col items-center justify-center w-full p-8 md:min-h-[480px] md:w-1/2">
-          <h2 className="mb-4 text-3xl font-bold text-center">Log In</h2>
+      <div className="flex flex-col w-4/5 max-w-4xl bg-white rounded-lg shadow-lg md:flex-row-reverse">
+        {/* register Section */}
+        <div className="flex animate__animated animate__bounceInRight flex-col items-center justify-center w-full p-8 md:min-h-[480px] md:w-1/2">
+          <h2 className="mb-4 text-3xl font-bold text-center">Register</h2>
           <div className="flex mb-4 space-x-3">
             <button
               onClick={handleGoogleLogin}
@@ -54,6 +53,19 @@ const LogIn = () => {
           <p className="mb-4 text-center">or use your email and password</p>
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
+              type="text"
+              placeholder="Name"
+              className="w-full p-3 mb-4 bg-gray-100 rounded outline-none"
+              {...register("name", {
+                required: "Name is required",
+              })}
+            />
+            {errors.name && (
+              <Typography className="text-red-400">
+                {errors.name.message}
+              </Typography>
+            )}
+            <input
               type="email"
               placeholder="Email"
               className="w-full p-3 mb-4 bg-gray-100 rounded outline-none"
@@ -65,7 +77,11 @@ const LogIn = () => {
                 },
               })}
             />
-            {errors.email && <Typography>{errors.email.message}</Typography>}
+            {errors.email && (
+              <Typography className="text-red-400">
+                {errors.email.message}
+              </Typography>
+            )}
 
             <input
               type="password"
@@ -85,27 +101,28 @@ const LogIn = () => {
               })}
             />
             {errors.password && (
-              <Typography>{errors.password.message}</Typography>
+              <Typography className="text-red-400">
+                {errors.password.message}
+              </Typography>
             )}
 
             <button className="w-full p-3 text-white rounded bg-primary">
-              LOG IN
+              REGISTER
             </button>
           </form>
         </div>
         {/* Sign Up Section */}
-        <div className="flex animate__animated animate__bounceInRight flex-col items-center justify-center w-full p-8 text-white rounded-b-lg bg-primary md:rounded-r-lg md:rounded-l-[30%] md:w-1/2">
+        <div className="flex animate__animated animate__bounceInLeft flex-col items-center justify-center w-full p-8 text-white rounded-b-lg bg-primary md:rounded-l-lg md:rounded-r-[30%] md:w-1/2">
           <h2 className="mb-4 text-3xl font-bold">Hello, Friend!</h2>
           <p className="mb-4 text-center">
-            Register with your personal details to use all of our site&apos;s
+            Login with your personal details to use all of our site&apos;s
             features
           </p>
-
           <Link
-            to="/register"
+            to="/login"
             className="w-full p-3 text-center bg-white rounded text-primary hover:bg-gray-100"
           >
-            <button>REGISTER</button>
+            <button>LOG IN</button>
           </Link>
         </div>
       </div>
@@ -113,4 +130,4 @@ const LogIn = () => {
   );
 };
 
-export default LogIn;
+export default Register;

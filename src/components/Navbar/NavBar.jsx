@@ -43,7 +43,7 @@ const NavList = () => (
 );
 
 const NavBar = () => {
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading, logOut } = useContext(AuthContext);
   const [openNav, setOpenNav] = useState(false);
 
   useEffect(() => {
@@ -77,7 +77,10 @@ const NavBar = () => {
             {loading ? (
               <Spinner />
             ) : user ? (
-              <Button>Log Out</Button>
+              <>
+                <p>{user.displayName}</p>
+                <Button onClick={() => logOut()}>Log Out</Button>{" "}
+              </>
             ) : (
               <Button>
                 <Link to="login">Login</Link>
