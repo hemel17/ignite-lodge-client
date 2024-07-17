@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react";
 export const ThemeContext = createContext();
 
 const MyThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
     if (theme === "dark") {

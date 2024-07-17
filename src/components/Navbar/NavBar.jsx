@@ -8,8 +8,14 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { Link, NavLink } from "react-router-dom";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/16/solid";
+import {
+  Bars3Icon,
+  MoonIcon,
+  SunIcon,
+  XMarkIcon,
+} from "@heroicons/react/16/solid";
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
+import { ThemeContext } from "../../providers/MyThemeProvider/MyThemeProvider";
 
 const navItems = [
   { name: "Home", link: "/" },
@@ -25,13 +31,13 @@ const NavList = () => (
         key={item.name}
         as="li"
         color="blue-gray"
-        className="p-1 font-semibold"
+        className="p-1 font-semibold dark:text-white"
       >
         <NavLink
           to={item.link}
           className={({ isActive }) =>
             isActive
-              ? "flex items-center transition-colors text-primary"
+              ? "flex items-center transition-colors text-primary dark:text-amber-400"
               : "flex items-center transition-colors"
           }
         >
@@ -43,6 +49,7 @@ const NavList = () => (
 );
 
 const NavBar = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const { user, loading, logOut } = useContext(AuthContext);
   const [openNav, setOpenNav] = useState(false);
 
@@ -59,34 +66,44 @@ const NavBar = () => {
   }, []);
 
   return (
-    <Navbar className="sticky top-0 z-10 max-w-full px-4 py-2 rounded-none h-max lg:px-8 lg:py-4">
+    <Navbar className="sticky top-0 z-10 max-w-full px-4 py-2 border-none rounded-none h-max dark:bg-blue-gray-900 lg:px-8 lg:py-4">
       <div className="flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"
-          href="#"
+          href="/"
           variant="h6"
-          className="mr-4 cursor-pointer py-1.5"
+          className="mr-4 cursor-pointer py-1.5 dark:text-white"
         >
-          Material Tailwind
+          <span className="text-primary dark:text-amber-400">Ignite</span> Lodge
         </Typography>
         <div className="hidden lg:block">
           <NavList />
         </div>
         <div className="flex items-center justify-center gap-4">
-          <div>
-            {loading ? (
-              <Spinner />
-            ) : user ? (
-              <>
-                <p>{user.displayName}</p>
-                <Button onClick={() => logOut()}>Log Out</Button>{" "}
-              </>
+          {loading ? (
+            <Spinner />
+          ) : user ? (
+            <>
+              <p>{user.displayName}</p>
+              <Button onClick={() => logOut()}>Log Out</Button>{" "}
+            </>
+          ) : (
+            <Button>
+              <Link to="login">Login</Link>
+            </Button>
+          )}
+
+          <Button
+            onClick={toggleTheme}
+            className="p-0 bg-transparent shadow-none hover:bg-transparent focus:bg-transparent active:bg-transparent hover:shadow-none"
+          >
+            {theme === "dark" ? (
+              <SunIcon className="w-6 h-6" strokeWidth={2} />
             ) : (
-              <Button>
-                <Link to="login">Login</Link>
-              </Button>
+              <MoonIcon className="w-6 h-6 text-black" strokeWidth={2} />
             )}
-          </div>
+          </Button>
+
           <IconButton
             variant="text"
             className="w-6 h-6 ml-auto text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
