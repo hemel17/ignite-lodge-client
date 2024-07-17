@@ -19,9 +19,10 @@ import { ThemeContext } from "../../providers/MyThemeProvider/MyThemeProvider";
 
 const navItems = [
   { name: "Home", link: "/" },
-  { name: "About", link: "/about" },
-  { name: "Docs", link: "/docs" },
-  { name: "Lodge", link: "/lodge" },
+  { name: "Rooms", link: "/rooms" },
+  { name: "My Bookings", link: "/myBookins" },
+  { name: "About Us", link: "/aboutUs" },
+  { name: "Contact Us", link: "/contactUs" },
 ];
 
 const NavList = () => (
@@ -83,12 +84,11 @@ const NavBar = () => {
           {loading ? (
             <Spinner />
           ) : user ? (
-            <>
-              <p>{user.displayName}</p>
-              <Button onClick={() => logOut()}>Log Out</Button>{" "}
-            </>
+            <Button onClick={() => logOut()} variant="outlined" color="red">
+              Log Out
+            </Button>
           ) : (
-            <Button>
+            <Button variant="outlined" color="green">
               <Link to="login">Login</Link>
             </Button>
           )}
