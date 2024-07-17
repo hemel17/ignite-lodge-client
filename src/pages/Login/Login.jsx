@@ -33,10 +33,10 @@ const LogIn = () => {
   };
 
   return (
-    <section className="flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-50 to-blue-50">
-      <div className="flex flex-col w-4/5 max-w-4xl bg-white rounded-lg shadow-lg md:flex-row">
+    <section className="flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-50 to-blue-50 dark:bg-gradient-to-r dark:from-blue-gray-600 dark:to-blue-gray-800">
+      <div className="flex flex-col w-4/5 max-w-4xl bg-white rounded-lg shadow-lg dark:bg-blue-gray-900 md:flex-row">
         {/* Sign In Section */}
-        <div className="flex animate__animated animate__bounceInLeft flex-col items-center justify-center w-full p-8 md:min-h-[480px] md:w-1/2">
+        <div className="flex animate__animated animate__bounceInLeft flex-col items-center justify-center w-full p-8 md:min-h-[480px] dark:text-white md:w-1/2">
           <h2 className="mb-4 text-3xl font-bold text-center">Log In</h2>
           <div className="flex mb-4 space-x-3">
             <button
@@ -52,7 +52,7 @@ const LogIn = () => {
             </button>
           </div>
           <p className="mb-4 text-center">or use your email and password</p>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)} className="text-black">
             <input
               type="email"
               placeholder="Email"
