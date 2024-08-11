@@ -2,11 +2,10 @@ import { Typography } from "@material-tailwind/react";
 import "animate.css";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
-import { useContext } from "react";
+import useAuth from "../../hooks/useAuth";
 
 const LogIn = () => {
-  const { logIn, googleLogIn } = useContext(AuthContext);
+  const { logIn, googleLogIn } = useAuth();
 
   const {
     register,
@@ -70,7 +69,7 @@ const LogIn = () => {
             <input
               type="password"
               placeholder="Password"
-              className="w-full p-3 mb-4 bg-gray-100 rounded outline-none"
+              className="relative w-full p-3 mb-4 bg-gray-100 rounded outline-none"
               {...register("password", {
                 required: "Password is required!",
                 minLength: {

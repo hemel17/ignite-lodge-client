@@ -14,8 +14,8 @@ import {
   SunIcon,
   XMarkIcon,
 } from "@heroicons/react/16/solid";
-import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 import { ThemeContext } from "../../providers/MyThemeProvider/MyThemeProvider";
+import useAuth from "../../hooks/useAuth";
 
 const navItems = [
   { name: "Home", link: "/" },
@@ -51,7 +51,7 @@ const NavList = () => (
 
 const NavBar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const { user, loading, logOut } = useContext(AuthContext);
+  const { user, loading, logOut } = useAuth();
   const [openNav, setOpenNav] = useState(false);
 
   useEffect(() => {

@@ -1,12 +1,11 @@
 import { Typography } from "@material-tailwind/react";
 import "animate.css";
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
+import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
-  const { createUser, googleLogIn } = useContext(AuthContext);
+  const { createUser, googleLogIn } = useAuth();
   const {
     register,
     handleSubmit,
