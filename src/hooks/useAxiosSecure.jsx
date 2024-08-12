@@ -18,14 +18,15 @@ const useAxiosSecure = () => {
         return res;
       },
       async (error) => {
-        if (error.response.status === 401 || error.response.status === 403) {
-          try {
-            // await logOut();
-            // navigate("/login");
-          } catch (err) {
-            console.error("Error during logout:", err);
-          }
-        }
+        console.log(error.response.status);
+        //   if (error.response.status === 401 || error.response.status === 403) {
+        //     try {
+        //       // await logOut();
+        //       // navigate("/login");
+        //     } catch (err) {
+        //       console.error("Error during logout:", err);
+        //     }
+        //   }
       }
     );
   }, []);
