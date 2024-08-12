@@ -1,7 +1,12 @@
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-// import useAuth from "./useAuth";
+import { getAuth, signOut } from "firebase/auth";
+import app from "../firebase/firebase.config";
+
+const auth = getAuth(app);
+const logOut = async () => {
+  return await signOut(auth);
+};
 
 const axiosSecure = axios.create({
   baseURL: "http://localhost:5000",
@@ -9,24 +14,17 @@ const axiosSecure = axios.create({
 });
 
 const useAxiosSecure = () => {
-  // const { logOut } = useAuth();
-  // const navigate = useNavigate();
-
   useEffect(() => {
     axiosSecure.interceptors.response.use(
       (res) => {
         return res;
       },
-      async (error) => {
-        console.log(error.response.status);
-        //   if (error.response.status === 401 || error.response.status === 403) {
-        //     try {
-        //       // await logOut();
-        //       // navigate("/login");
-        //     } catch (err) {
-        //       console.error("Error during logout:", err);
-        //     }
-        //   }
+      (error) => {
+        if (error.response.status === 401 || error.response.status === 403) {
+          logOut();
+          return Promise.reject({ status: error.response.status });
+        }
+        return Promise.reject(error);
       }
     );
   }, []);
