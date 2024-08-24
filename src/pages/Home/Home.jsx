@@ -1,22 +1,13 @@
-import Slider from "../../components/Slider/Slider";
-import { useEffect, useState } from "react";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Hero from "../../components/Hero/Hero";
+import Welcome from "../../components/Welcome/Welcome";
+import FeaturedRooms from "../../components/FeaturedRooms/FeaturedRooms";
 
 const Home = () => {
-  const axiosSecure = useAxiosSecure();
-  const [rooms, setRooms] = useState([]);
-
-  console.log(rooms);
-
-  useEffect(() => {
-    axiosSecure
-      .get("/rooms")
-      .then((res) => setRooms(res.data))
-      .catch((error) => console.log(error));
-  }, [axiosSecure]);
   return (
     <>
-      <Slider />
+      <Hero />
+      <Welcome />
+      <FeaturedRooms />
     </>
   );
 };
