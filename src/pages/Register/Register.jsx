@@ -1,10 +1,11 @@
 import { Typography } from "@material-tailwind/react";
 import "animate.css";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
+  const navigate = useNavigate();
   const { createUser, googleLogIn } = useAuth();
   const {
     register,
@@ -16,6 +17,7 @@ const Register = () => {
     try {
       const user = await createUser(data);
       console.log(user);
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
@@ -25,6 +27,7 @@ const Register = () => {
     try {
       const res = await googleLogIn();
       console.log(res);
+      navigate("/");
     } catch (error) {
       console.error(error);
     }

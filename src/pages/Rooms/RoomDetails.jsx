@@ -1,5 +1,8 @@
 import { useLoaderData } from "react-router-dom";
 import Slider from "../../components/Slider/Slider";
+import moment from "moment";
+import { useState } from "react";
+import { Button } from "@material-tailwind/react";
 
 const RoomDetails = () => {
   const { data } = useLoaderData();
@@ -12,6 +15,22 @@ const RoomDetails = () => {
     SpecialOffers,
     Review,
   } = data;
+
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const handleDateChange = (e) => {
+    setSelectedDate(moment(e.target.value).format("DDMMYY"));
+  };
+
+  const handleBooking = () => {
+    if (selectedDate) {
+      alert(`Booking confirmed for ${selectedDate}!`);
+      // Proceed with booking logic here
+    } else {
+      alert("Please select a date to book the room.");
+    }
+  };
+
   return (
     <section className="min-h-screen px-4 py-10 dark:bg-blue-gray-900 dark:text-white">
       <section className="container mx-auto">
@@ -19,7 +38,7 @@ const RoomDetails = () => {
           <Slider RoomImages={RoomImages} />
         </div>
 
-        <div className="w-full md:w-[80%] mx-auto">
+        <div className="w-full md:w-[80%] mx-auto mt-8">
           <h2 className="mb-4 text-3xl text-center md:text-5xl">
             {RoomDescription}
           </h2>
@@ -28,6 +47,24 @@ const RoomDetails = () => {
           <p>Available : {Available ? "Yes" : "No"}</p>
           <p>Special Offer : {SpecialOffers}</p>
           <p>Total Review : {Review.length}</p>
+
+          <div className="mt-6">
+            <label htmlFor="date-picker" className="block mb-2 text-lg">
+              Select a Date:
+            </label>
+            <input
+              type="date"
+              id="date-picker"
+              className="p-2 border border-gray-300 rounded-md dark:bg-blue-gray-800 dark:border-gray-600"
+              onChange={handleDateChange}
+            />
+          </div>
+
+          <div className="mt-4 text-center">
+            <Button onClick={handleBooking} color="deep-purple">
+              Book Now
+            </Button>
+          </div>
         </div>
       </section>
     </section>

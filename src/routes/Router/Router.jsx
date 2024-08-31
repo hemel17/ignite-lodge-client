@@ -9,6 +9,7 @@ import Error from "../../pages/Error/Error";
 import Rooms from "../../pages/Rooms/Rooms";
 import RoomDetails from "../../pages/Rooms/RoomDetails";
 import axios from "axios";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,11 @@ const router = createBrowserRouter([
       },
       {
         path: "rooms/:_id",
-        element: <RoomDetails />,
+        element: (
+          <PrivateRoute>
+            <RoomDetails />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           axios.get(`http://localhost:5000/room/${params._id}`),
       },
