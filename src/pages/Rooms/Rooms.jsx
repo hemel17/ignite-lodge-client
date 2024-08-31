@@ -30,8 +30,6 @@ const Rooms = () => {
     });
   };
 
-  // console.log(rooms);
-
   return (
     <section className="min-h-screen px-10 mx-auto md:px-20 dark:bg-blue-gray-900">
       <div className="flex justify-end max-w-xl py-4 mx-auto space-x-2">
@@ -61,7 +59,7 @@ const Rooms = () => {
                 <h3 className="text-lg font-bold">{room.RoomDescription}</h3>
                 <p className="flex items-center">
                   <StarIcon className="w-5 h-5 text-yellow-500" />
-                  {room.Review} reviews
+                  {room.Review.length} reviews
                 </p>
                 <p className="mt-2 text-gray-800">
                   ${room.PricePerNight} per night
