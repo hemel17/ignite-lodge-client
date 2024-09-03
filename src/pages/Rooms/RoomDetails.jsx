@@ -3,8 +3,11 @@ import Slider from "../../components/Slider/Slider";
 import moment from "moment";
 import { useState } from "react";
 import { Button } from "@material-tailwind/react";
+import useAuth from "../../hooks/useAuth";
 
 const RoomDetails = () => {
+  const { user } = useAuth();
+  console.log(user);
   const { data } = useLoaderData();
   const {
     RoomDescription,
@@ -18,11 +21,17 @@ const RoomDetails = () => {
 
   const [selectedDate, setSelectedDate] = useState(null);
 
+  const currentDate = moment().format("DDMMYY");
+
   const handleDateChange = (e) => {
     setSelectedDate(moment(e.target.value).format("DDMMYY"));
   };
 
   const handleBooking = () => {
+    if (selectedDate < currentDate) {
+      return alert("We dont't allow time travel!");
+    }
+
     if (selectedDate) {
       alert(`Booking confirmed for ${selectedDate}!`);
       // Proceed with booking logic here
@@ -61,9 +70,15 @@ const RoomDetails = () => {
           </div>
 
           <div className="mt-4 text-center">
-            <Button onClick={handleBooking} color="deep-purple">
-              Book Now
-            </Button>
+            {Available ? (
+              <Button onClick={handleBooking} color="deep-purple">
+                Book Now
+              </Button>
+            ) : (
+              <button className="cursor-not-allowed pointer-events-none">
+                Book Now
+              </button>
+            )}
           </div>
         </div>
       </section>

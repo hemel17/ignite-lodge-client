@@ -7,11 +7,15 @@ import router from "./routes/Router/Router.jsx";
 import Main from "./layout/Main.jsx";
 import MyThemeProvider from "./providers/MyThemeProvider/MyThemeProvider.jsx";
 import AuthProvider from "./providers/AuthProvider/AuthProvider.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     {/* dark || light mode */}
     <MyThemeProvider>
+      {/* toast */}
+      <ToastContainer />
       {/* User info */}
       <AuthProvider>
         {/* material tailwind */}

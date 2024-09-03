@@ -8,7 +8,7 @@ const FeaturedRooms = () => {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/featuredRooms");
+        const res = await axios.get("http://localhost:5000/rooms");
         // console.log(res.data);
         setRooms(res.data);
       } catch (error) {
@@ -21,9 +21,11 @@ const FeaturedRooms = () => {
 
   return (
     <section>
-      {rooms.map((room) => (
-        <Rooms key={room._id} room={room} />
-      ))}
+      {rooms
+        .filter((room) => room.Featured)
+        .map((room) => (
+          <Rooms key={room._id} room={room} />
+        ))}
     </section>
   );
 };

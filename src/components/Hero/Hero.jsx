@@ -1,5 +1,6 @@
 import { Input, Select, Option, Button } from "@material-tailwind/react";
 import { StarIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -54,9 +55,9 @@ const Hero = () => {
           </Select>
 
           {/* Book Now Button */}
-          <Button fullWidth className="p-2 m-2 bg-green-500 rounded-md">
-            Book Now
-          </Button>
+          <Link to="/rooms">
+            <Button color="deep-purple">Book Now</Button>
+          </Link>
         </div>
       </div>
 

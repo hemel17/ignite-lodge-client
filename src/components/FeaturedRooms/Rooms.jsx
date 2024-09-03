@@ -1,4 +1,5 @@
 import { Button } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 const Rooms = ({ room }) => {
   return (
@@ -15,7 +16,9 @@ const Rooms = ({ room }) => {
           service, making it the best choice for travelers seeking an
           unforgettable stay.
         </p>
-        <Button color="deep-purple">More Rooms</Button>
+        <Link to="/rooms">
+          <Button color="deep-purple">Book Now</Button>
+        </Link>
       </div>
     </section>
   );
